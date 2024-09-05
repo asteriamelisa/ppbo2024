@@ -3,48 +3,65 @@
 class Lingkaran
 {
     const PHI = 3.14;
+    public $jari_jari; // Atribut jari_jari
 
-    public function luas($jari_jari) : float {
-        return self::PHI * $jari_jari * $jari_jari;
+    // Constructor untuk inisialisasi
+    public function __construct($jari_jari)
+    {
+        $this->jari_jari = $jari_jari;
     }
 
-    public function keliling($jari_jari) : float {
-        return 2 * self::PHI * $jari_jari;
+    public function luas() : float {
+        return self::PHI * $this->jari_jari * $this->jari_jari;
     }
-}
 
-class Bola
-{
-    const PHI = 3.14;
-
-    public function volume($jari_jari) : float {
-        return (4/3) * self::PHI * pow($jari_jari, 3);
+    public function keliling() : float {
+        return 2 * self::PHI * $this->jari_jari;
     }
 }
 
-class Tabung
+class Bola extends Lingkaran
 {
-    const PHI = 3.14;
-
-    public function volume($jari_jari, $tinggi) : float {
-        return self::PHI * pow($jari_jari, 2) * $tinggi;
+    public function volume() : float {
+        return (4/3) * self::PHI * pow($this->jari_jari, 3);
     }
 }
 
-class Kerucut
+class Tabung extends Lingkaran
 {
-    const PHI = 3.14;
+    public $tinggi;
 
-    public function volume($jari_jari, $tinggi) : float {
-        return (1/3) * self::PHI * pow($jari_jari, 2) * $tinggi;
+    public function __construct($jari_jari, $tinggi)
+    {
+        parent::__construct($jari_jari);
+        $this->tinggi = $tinggi;
+    }
+
+    public function volume() : float {
+        return self::PHI * pow($this->jari_jari, 2) * $this->tinggi;
+    }
+}
+
+class Kerucut extends Lingkaran
+{
+    public $tinggi;
+
+    public function __construct($jari_jari, $tinggi)
+    {
+        parent::__construct($jari_jari);
+        $this->tinggi = $tinggi;
+    }
+
+    public function volume() : float {
+        return (1/3) * self::PHI * pow($this->jari_jari, 2) * $this->tinggi;
     }
 }
 
 // Membuat objek dari class Kerucut dengan nama nasi_tumpeng
-$nasi_tumpeng = new Kerucut();
+$nasi_tumpeng = new Kerucut(4, 10);
 
-// Menjalankan fungsi volume dengan jari-jari 4 cm dan tinggi 10 cm
-$volume_nasi_tumpeng = $nasi_tumpeng->volume(4, 10);
+// Menjalankan fungsi volume
+$volume_nasi_tumpeng = $nasi_tumpeng->volume();
 
 // Menampilkan hasil volume
 echo "Volume nasi tumpeng adalah: {$volume_nasi_tumpeng} cm³";
