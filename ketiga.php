@@ -3,9 +3,9 @@
 class Lingkaran
 {
     const PHI = 3.14;
-    public $jari_jari; // Atribut jari_jari
+    public $jari_jari;
 
-    // Constructor untuk inisialisasi
+    // Constructor untuk inisialisasi jari_jari
     public function __construct($jari_jari)
     {
         $this->jari_jari = $jari_jari;
@@ -31,6 +31,7 @@ class Tabung extends Lingkaran
 {
     public $tinggi;
 
+    // Constructor untuk inisialisasi jari_jari dan tinggi
     public function __construct($jari_jari, $tinggi)
     {
         parent::__construct($jari_jari);
@@ -46,6 +47,7 @@ class Kerucut extends Lingkaran
 {
     public $tinggi;
 
+    // Constructor untuk inisialisasi jari_jari dan tinggi
     public function __construct($jari_jari, $tinggi)
     {
         parent::__construct($jari_jari);
