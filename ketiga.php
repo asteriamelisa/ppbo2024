@@ -1,71 +1,97 @@
 <?php
+// Kelas Author
+class Author {
+    public $name;
+    public $description;
 
-class Lingkaran
-{
-    const PHI = 3.14;
-    public $jari_jari;
-
-    // Constructor untuk inisialisasi jari_jari
-    public function __construct($jari_jari)
-    {
-        $this->jari_jari = $jari_jari;
+    public function __construct($name, $description) {
+        $this->name = $name;
+        $this->description = $description;
     }
 
-    public function luas() : float {
-        return self::PHI * $this->jari_jari * $this->jari_jari;
-    }
-
-    public function keliling() : float {
-        return 2 * self::PHI * $this->jari_jari;
+    public function show($type) {
+        // Logika untuk mengembalikan array berdasarkan $type
+        return [
+            'name' => $this->name,
+            'description' => $this->description
+        ];
     }
 }
 
-class Bola extends Lingkaran
-{
-    public function volume() : float {
-        return (4/3) * self::PHI * pow($this->jari_jari, 3);
+// Kelas Book
+class Book {
+    public $ISBN;
+    public $title;
+    public $description;
+    public $category;
+    public $language;
+    public $numberOfPage;
+    public $author;
+    public $publisher;
+
+    public function __construct($ISBN, $title, $description, $category, $language, $numberOfPage, $author, $publisher) {
+        $this->ISBN = $ISBN;
+        $this->title = $title;
+        $this->description = $description;
+        $this->category = $category;
+        $this->language = $language;
+        $this->numberOfPage = $numberOfPage;
+        $this->author = $author;
+        $this->publisher = $publisher;
+    }
+
+    public function showAll() {
+        return [
+            'ISBN' => $this->ISBN,
+            'title' => $this->title,
+            'description' => $this->description,
+            'category' => $this->category,
+            'language' => $this->language,
+            'numberOfPage' => $this->numberOfPage,
+            'author' => $this->author,
+            'publisher' => $this->publisher
+        ];
+    }
+
+    public function detail($ISBN) {
+        if ($this->ISBN == $ISBN) {
+            return $this->showAll();
+        }
+        return null;
     }
 }
 
-class Tabung extends Lingkaran
-{
-    public $tinggi;
+// Kelas Publisher
+class Publisher {
+    public $name;
+    public $address;
+    public $phone;
 
-    // Constructor untuk inisialisasi jari_jari dan tinggi
-    public function __construct($jari_jari, $tinggi)
-    {
-        parent::__construct($jari_jari);
-        $this->tinggi = $tinggi;
+    public function __construct($name, $address, $phone) {
+        $this->name = $name;
+        $this->address = $address;
+        $this->phone = $phone;
     }
 
-    public function volume() : float {
-        return self::PHI * pow($this->jari_jari, 2) * $this->tinggi;
-    }
-}
-
-class Kerucut extends Lingkaran
-{
-    public $tinggi;
-
-    // Constructor untuk inisialisasi jari_jari dan tinggi
-    public function __construct($jari_jari, $tinggi)
-    {
-        parent::__construct($jari_jari);
-        $this->tinggi = $tinggi;
+    public function setPhone($phone) {
+        $this->phone = $phone;
     }
 
-    public function volume() : float {
-        return (1/3) * self::PHI * pow($this->jari_jari, 2) * $this->tinggi;
+    public function getPhone() {
+        return $this->phone;
     }
 }
 
-// Membuat objek dari class Kerucut dengan nama nasi_tumpeng
-$nasi_tumpeng = new Kerucut(4, 10);
+// Contoh Penggunaan
+$author = new Author("J.K. Rowling", "Famous author of Harry Potter series");
+$publisher = new Publisher("Bloomsbury", "London", "123456789");
 
-// Menjalankan fungsi volume
-$volume_nasi_tumpeng = $nasi_tumpeng->volume();
+$book = new Book(1234567890, "Harry Potter", "A magical story", "Fantasy", "English", 500, $author->name, $publisher->name);
 
-// Menampilkan hasil volume
-echo "Volume nasi tumpeng adalah: {$volume_nasi_tumpeng} cm³";
+// Tampilkan detail buku
+print_r($book->showAll());
+
+// Dapatkan nomor telepon penerbit
+echo $publisher->getPhone();
 
 ?>
