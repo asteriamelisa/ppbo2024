@@ -1,97 +1,81 @@
 <?php
-// Kelas Author
-class Author {
-    public $name;
-    public $description;
+class Lingkaran
+{
+    const PHI = 3.14;
+    public $jari_jari;
 
-    public function __construct($name, $description) {
-        $this->name = $name;
-        $this->description = $description;
+    public function __construct($jari_jari) {
+        $this->jari_jari = $jari_jari;
     }
 
-    public function show($type) {
-        // Logika untuk mengembalikan array berdasarkan $type
-        return [
-            'name' => $this->name,
-            'description' => $this->description
-        ];
-    }
-}
-
-// Kelas Book
-class Book {
-    public $ISBN;
-    public $title;
-    public $description;
-    public $category;
-    public $language;
-    public $numberOfPage;
-    public $author;
-    public $publisher;
-
-    public function __construct($ISBN, $title, $description, $category, $language, $numberOfPage, $author, $publisher) {
-        $this->ISBN = $ISBN;
-        $this->title = $title;
-        $this->description = $description;
-        $this->category = $category;
-        $this->language = $language;
-        $this->numberOfPage = $numberOfPage;
-        $this->author = $author;
-        $this->publisher = $publisher;
+    public function luas() : float {
+        return self::PHI * $this->jari_jari * $this->jari_jari;
     }
 
-    public function showAll() {
-        return [
-            'ISBN' => $this->ISBN,
-            'title' => $this->title,
-            'description' => $this->description,
-            'category' => $this->category,
-            'language' => $this->language,
-            'numberOfPage' => $this->numberOfPage,
-            'author' => $this->author,
-            'publisher' => $this->publisher
-        ];
-    }
-
-    public function detail($ISBN) {
-        if ($this->ISBN == $ISBN) {
-            return $this->showAll();
-        }
-        return null;
+    public function keliling() : float {
+        return 2 * self::PHI * $this->jari_jari;
     }
 }
 
-// Kelas Publisher
-class Publisher {
-    public $name;
-    public $address;
-    public $phone;
+class Bola
+{
+    const PHI = 3.14;
+    public $jari_jari;
 
-    public function __construct($name, $address, $phone) {
-        $this->name = $name;
-        $this->address = $address;
-        $this->phone = $phone;
+    public function __construct($jari_jari) {
+        $this->jari_jari = $jari_jari;
     }
 
-    public function setPhone($phone) {
-        $this->phone = $phone;
-    }
-
-    public function getPhone() {
-        return $this->phone;
+    public function volume() : float {
+        return (4/3) * self::PHI * pow($this->jari_jari, 3);
     }
 }
 
-// Contoh Penggunaan
-$author = new Author("J.K. Rowling", "Famous author of Harry Potter series");
-$publisher = new Publisher("Bloomsbury", "London", "123456789");
+class Tabung
+{
+    const PHI = 3.14;
+    public $jari_jari;
 
-$book = new Book(1234567890, "Harry Potter", "A magical story", "Fantasy", "English", 500, $author->name, $publisher->name);
+    public function __construct($jari_jari) {
+        $this->jari_jari = $jari_jari;
+    }
 
-// Tampilkan detail buku
-print_r($book->showAll());
+    public function volume($tinggi) : float {
+        return self::PHI * pow($this->jari_jari, 2) * $tinggi;
+    }
+}
 
-// Dapatkan nomor telepon penerbit
-echo $publisher->getPhone();
+class Kerucut
+{
+    const PHI = 3.14;
+    public $jari_jari;
 
-?>
+    public function __construct($jari_jari) {
+        $this->jari_jari = $jari_jari;
+    }
+
+    public function volume($tinggi) : float {
+        return (1/3) * self::PHI * pow($this->jari_jari, 2) * $tinggi;
+    }
+}
+
+$nasi_tumpeng = new Kerucut(4);
+$volume_nasitumpeng = $nasi_tumpeng->volume(10);
+echo "Volume Nasi tumpeng adalah {$volume_nasitumpeng}\n";
+
+$kerucut = new Kerucut(7);
+$volume_kerucut = $kerucut->volume(10);
+echo "Volume kerucut adalah:  {$volume_kerucut}  \n";
+
+$lingkaran = new Lingkaran(15);
+$luaslingkaran = $lingkaran->luas();
+$kelilinglingkaran = $lingkaran->keliling();
+echo "Luas lingkaran adalah {$luaslingkaran} dan kelilingnya {$kelilinglingkaran}\n";
+
+$bola = new Bola(14);
+$volumebola = $bola->volume();
+echo "Volume bola adalah {$volumebola}\n";
+
+$tabung = new Tabung(3.5);
+$volumetabung = $tabung->volume(10);
+echo "Volume tabung adalah {$volumetabung}\n";
