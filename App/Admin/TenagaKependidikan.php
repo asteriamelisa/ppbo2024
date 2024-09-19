@@ -1,11 +1,11 @@
 <?php
-namespace TenagaKependidikan;
-
-
-class TenagaKependidikan
-{
-    public int $gaji_pokok;
+namespace App\Admin;
+require_once 'App/Admin/Pegawai.php';
+class TenagaKependidikan extends Pegawai {
+    public $gaji_pokok;
+    
     public function cuti() : void {
-        echo "sedang mengambil cuti";
+        echo "($this->nama) telah mengajukan cuti";
     }
 }
+?>
