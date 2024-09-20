@@ -1,6 +1,7 @@
+<?php
+
 require_once 'vendor/autoload.php';
 
-use App\Admin\Dosen;
 use App\Model\Akademik\Dosen;
 
 $dian = new Dosen();
@@ -10,3 +11,4 @@ $dian->setNoHp(62111111);
 $dian->alamat = 'Jln Purnama';
 $dian->nidn = '0013118405';
 $dian->mengajar();
+?>
