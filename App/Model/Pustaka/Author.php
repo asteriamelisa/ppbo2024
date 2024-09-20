@@ -1,5 +1,6 @@
 <?php
 // Kelas Author
+namespace App\Model\Pustaka;
 class Author {
     public $name;
     public $description;
