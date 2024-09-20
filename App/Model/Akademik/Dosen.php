@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Akademik;
-require_once 'App/Model/Akademik/Dosen';
+Use App\Model\Akademik\Pegawai;
+
 class Dosen extends Pegawai {
     public $nidn;
     
