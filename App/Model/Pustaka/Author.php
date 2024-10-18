@@ -38,13 +38,8 @@ class Author extends Model
         $stmt = $db->prepare("SELECT * FROM author");
         if ($stmt->execute()) {
             $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-            foreach ($results as $key => $item) {
-                $authors[$key] = new Author();
-                $authors[$key]->id = $item['id'];
-                $authors[$key]->name = $item['name'];
-                $authors[$key]->description = $item['description'];
-
-
+            foreach ($results as $item) {
+                $authors[] = new Author($item['id'], $item['name'], $item['description']);
             }
         } else {
             $authors = null;
@@ -53,8 +48,27 @@ class Author extends Model
     }
 
 
+
+
+    public function detail($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM author WHERE id= {$id}");
+        if ($stmt->execute()) {
+            $author = $stmt->fetch(\PDO::FETCH_ASSOC);
+            $this->id = $author['id'];
+            $this->name = $author['name'];
+            $this->description = $author['description'];
+        } else {
+            $author = null;
+        }
+    }
+
+
+
+
     public function show(): array
     {
         return [];
     }
 }
+
