@@ -9,5 +9,5 @@ require_once 'vendor/autoload.php';
 
 
 $author = new Author();
-$author->detail(6);
+$author->detail(id:6);
 View::json($author);
