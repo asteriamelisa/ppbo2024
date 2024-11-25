@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Model;
 
 
@@ -26,8 +27,6 @@ class Model
         }
 
 
-
-
     }
 
 
@@ -35,7 +34,4 @@ class Model
     {
         return $this->db;
     }
-
-
 }
-

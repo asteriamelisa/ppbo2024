@@ -40,14 +40,15 @@ class Publisher extends Model
             $stmt->bindParam(':address', $this->address);
             $stmt->bindParam(':phone', $this->phone);
             $status = $stmt->execute();
-           
+
+
             $stmt = $this->db->query("SELECT LAST_INSERT_ID()");
             $last_id = $stmt->fetchColumn();
 
 
             $result = [
-                'status'=> $status,
-                'id'=> $last_id
+                'status' => $status,
+                'id' => $last_id
             ];
         } catch (\PDOException $e) {
             http_response_code(500);
